@@ -1,0 +1,20 @@
+<launch>
+
+    <!-- Tour publisher nodes -->
+    <node name="tour_publisher1" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/euclid_tour3D2-2.pcd" ns="tour1" output="screen"/>
+    <node name="tour_publisher2" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/energy_tour2-2x1.pcd" ns="tour2" output="screen"/>
+    <node name="tour_publisher3" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/energy_tour2-2x2.pcd" ns="tour3" output="screen"/>
+    <node name="tour_publisher4" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/energy_tour2-2x3.pcd" ns="tour4" output="screen"/>
+    <node name="tour_publisher5" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/rotonly_tour2-2-2.pcd" ns="tour5" output="screen"/>
+    <node name="tour_publisher6" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/ref_rot_tour2-2.pcd" ns="tour6" output="screen"/>
+    <node name="tour_publisher7" pkg="tour_publisher" type="tour_publisher.py" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/loadrot_tour2-2-2.pcd" ns="tour7" output="screen"/>
+
+    <!-- PCL_ROS pcd_to_pointcloud nodes -->
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="node1" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/transformed2-2z.pcd 0.1 _frame_id:=map cloud_pcd:=cloud" output="screen"/>
+    <node pkg="pcl_ros" type="pcd_to_pointcloud" name="node2" args="/media/adachi/logSSD/forest/maplogging_with_gnss2/rot_tour2-2.pcd 0.1 _frame_id:=map cloud_pcd:=cloud2" output="screen"/>
+
+    <!-- rviz -->
+    <node name="rviz1" pkg="rviz" type="rviz" args="-d $(find tour_publisher)/config/tour.rviz"/>
+    <!-- <node name="rviz2" pkg="rviz" type="rviz" args="-d $(find tour_publisher)/config/tour.rviz"/> -->
+
+</launch>

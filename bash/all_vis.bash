@@ -1,0 +1,1 @@
+roslaunch tour_publisher all_viz.launch
